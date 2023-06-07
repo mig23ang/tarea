@@ -3,7 +3,6 @@ package com.mibanco.ts.crearclientecdtdgital.controller;
 import com.mibanco.ts.crearclientecdtdgital.constants.Constants;
 import com.mibanco.ts.crearclientecdtdgital.gen.contract.V1ClienteCDTDigitalTSApi;
 import com.mibanco.ts.crearclientecdtdgital.gen.type.ClienteCDTDigitalType;
-import com.mibanco.ts.crearclientecdtdgital.gen.type.CrearClienteCDTDigitalOutput;
 import com.mibanco.ts.crearclientecdtdgital.services.impl.ClienteCdtDigitalServiceImpl;
 import com.mibanco.ts.crearclientecdtdgital.utils.ApplicationException;
 import com.mibanco.ts.crearclientecdtdgital.utils.ClienteCDTDigitalValidator;
@@ -29,7 +28,7 @@ public class ClienteCDTDigitalController implements V1ClienteCDTDigitalTSApi {
             validator.verificarDatosClienteCdtDigital(clienteCDTDigitalType);
             // Lógica adicional según los parámetros del método
 
-            CrearClienteCDTDigitalOutput clienteCreado = clienteCdtDigitalService.crearClienteCDTDigital(clienteCDTDigitalType);
+            ClienteCDTDigitalType clienteCreado = clienteCdtDigitalService.crearClienteCDTDigital(clienteCDTDigitalType);
             LOG.info("Termina crearClienteCdtDigitalController");
             return Response.status(200).entity(clienteCreado).build();
         } catch (ApplicationException e) {
@@ -39,7 +38,7 @@ public class ClienteCDTDigitalController implements V1ClienteCDTDigitalTSApi {
         }
     }
 
-    @Override
+
     public Response validarExistenciaClienteCDT(ClienteCDTDigitalType clienteCDTDigitalType) {
         return null;
     }

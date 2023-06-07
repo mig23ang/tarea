@@ -3,10 +3,10 @@ package com.mibanco.ts.crearclientecdtdgital.services.impl;
 
 import com.mibanco.ts.crearclientecdtdgital.constants.Constants;
 import com.mibanco.ts.crearclientecdtdgital.gen.type.ClienteCDTDigitalType;
-import com.mibanco.ts.crearclientecdtdgital.gen.type.CrearClienteCDTDigitalOutput;
+import com.mibanco.ts.crearclientecdtdgital.services.command.business.GenerarArchivoPlanoNovedades;
+import com.mibanco.ts.crearclientecdtdgital.services.command.business.ValidarInformacionClienteCDT;
 import com.mibanco.ts.crearclientecdtdgital.services.contract.IClienteCdtDigitalService;
 import com.mibanco.ts.crearclientecdtdgital.utils.ApplicationException;
-import com.mibanco.ts.crearclientecdtdgital.utils.ClienteCDTDigitalMapper;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
@@ -24,20 +24,24 @@ public class ClienteCdtDigitalServiceImpl implements IClienteCdtDigitalService {
     MockCliente mockCliente;
 
     @Inject
-    ClienteCDTDigitalMapper mapper;
+    ValidarInformacionClienteCDT validarInformacionClienteCDT;
+
+    @Inject
+    GenerarArchivoPlanoNovedades generarArchivoPlanoNovedades;
+
 
     @Transactional
     @Override
-    public CrearClienteCDTDigitalOutput crearClienteCDTDigital(ClienteCDTDigitalType clienteCDTDigitalType) {
+    public ClienteCDTDigitalType crearClienteCDTDigital(ClienteCDTDigitalType clienteCDTDigitalType) {
 
         LOG.info("Inicia creación de datos crearClienteCDTDigitalSvcImpl");
         try {
             ModelMapper modelMapper = new ModelMapper();
             ClienteCDTDigitalType clienteCreado = modelMapper.map(clienteCDTDigitalType, ClienteCDTDigitalType.class);
             mockCliente.crearClienteCDTDigital(clienteCreado);
-            CrearClienteCDTDigitalOutput clienteCDTDigitalOutput = mapper.clienteCDTDigitalOutputToClienteType(clienteCreado);
+
             LOG.info("Termina creación de datos crearClienteCDTDigitalSvcImpl");
-            return clienteCDTDigitalOutput;
+            return clienteCreado;
 
         } catch (Exception e) {
 

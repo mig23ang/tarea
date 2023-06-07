@@ -3,9 +3,9 @@ servers:
   - description: Index swagger
     url: https://api.mibanco.com.co
 info:
-  description: Servicio de entidad ClienteCdtDigitalTS.
+  description: Tarea CrearClienteCdtDigitalTS.
   version: 0.0.1
-  title: ClienteCDTDigitalTS
+  title: CrearClienteCdtDigitalTS
   contact:
     name: MiBanco
     url: https://www.mibanco.com.co/
@@ -14,14 +14,13 @@ info:
     name: GNU GPLv3
     url: 'https://www.gnu.org/licenses/gpl-3.0.html'
 tags:
-  - name: Crear cliente cdt digital
-    description: Crear cliente cdt digital
-
+  - name: CrearClienteCdtDigitalTS
+    description: Tarea para crear un ClienteCdtDigitalTS
 #----------------------------
 #Endpoints del Entidad
 #----------------------------
 paths:
-  /v1/es/clienteCDT/:
+  /v1/ts/clienteCDT/:
     post:
       tags:
         - Crear cliente cdt digital
@@ -76,24 +75,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/CrearClienteCDTDigitalOutput"
-        "400":
-          description: "Parámetros de entrada no validos."
-        "404":
-          description: "No se encuentra el cliente."
-  /v1/es/clienteCDT/validaExistencia:
-    post:
-      tags:
-        - Validar existencia cliente
-      operationId: validarExistenciaClienteCDT
-      requestBody:
-        description: Validar existencia cliente cdt digital
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/ClienteCDTDigitalType"
-      responses:
-        "200":
-          description: "Cliente cdt digital validado."
         "400":
           description: "Parámetros de entrada no validos."
         "404":
@@ -292,6 +273,25 @@ components:
           type: integer
         novedad:
           $ref: "#/components/schemas/NovedadCDTDigitalType"
+    ArchivoType:
+      type: object
+      properties:
+        archivoId:
+          type: string
+        base64:
+          type: array
+          items:
+            type: integer
+            format: byte
+          example: [10, 20, 30, 40]  # Ejemplo de una lista de bytes
+        extensionArchivo:
+          type: string
+        nombreArchivo:
+          type: string
+        url:
+          type: string
+        urlPublica:
+          type: boolean
     NovedadCDTDigitalType:
       type: object
       properties:

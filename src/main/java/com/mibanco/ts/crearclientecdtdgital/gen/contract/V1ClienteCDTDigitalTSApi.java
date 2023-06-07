@@ -14,17 +14,12 @@ import java.util.List;
 import jakarta.validation.constraints.*;
 import jakarta.validation.Valid;
 
-@Path("/v1/es/clienteCDT")
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2023-06-07T11:53:35.555376200-05:00[America/Bogota]")
+@Path("/v1/ts/clienteCDT/")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2023-06-07T17:52:15.921852-05:00[America/Bogota]")
 public interface V1ClienteCDTDigitalTSApi {
 
     @POST
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
     Response crearClienteCDTDigital(@HeaderParam("networkOwner") @NotNull   String networkOwner,@HeaderParam("networkRefId") @NotNull   String networkRefId,@HeaderParam("terminalId") @NotNull   String terminalId,@HeaderParam("ipAddress") @NotNull   String ipAddress,@HeaderParam("custPermId") @NotNull   String custPermId,@HeaderParam("operationCode") @NotNull   Integer operationCode,@Valid ClienteCDTDigitalType clienteCDTDigitalType);
-
-    @POST
-    @Path("/validaExistencia")
-    @Consumes({ "application/json" })
-    Response validarExistenciaClienteCDT(@Valid ClienteCDTDigitalType clienteCDTDigitalType);
 }
