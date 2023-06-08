@@ -40,13 +40,13 @@ public class ClienteCdtDigitalServiceImpl implements IClienteCdtDigitalService {
         LOG.info("Inicia creación de datos crearClienteCDTDigitalSvcImpl");
         try {
             // 1. Validar la información del cliente
-            boolean clienteExiste = (boolean) validarInformacionClienteCDT.execute((IParam) clienteCDTDigitalType);
+            boolean clienteExiste = (boolean) validarInformacionClienteCDT.execute(clienteCDTDigitalType);
 
             // Realiza la lógica necesaria según el resultado de la validación
             if (clienteExiste) {
                 LOG.info("Error creación de datos crearClienteCDTDigitalSvcImpl");
                 // 2. Generar el archivo plano de novedades **recordar que se envian los parametro necesarios para crear el archivo plano, los parametros aca enviados son un ejemplo
-                ArchivoType archivoPlano = (ArchivoType) generarArchivoPlanoNovedades.execute((IParam) clienteCDTDigitalType);
+                ArchivoType archivoPlano = (ArchivoType) generarArchivoPlanoNovedades.execute(clienteCDTDigitalType);
                 throw new ApplicationException(Response.Status.EXPECTATION_FAILED.getStatusCode(), Constants.CLIENTE_YA_EXISTE);
             } else {
                 ModelMapper modelMapper = new ModelMapper();
