@@ -7,8 +7,6 @@ import com.mibanco.ts.crearclientecdtdgital.gen.type.GeneroEnum;
 import com.mibanco.ts.crearclientecdtdgital.gen.type.SectorEconomicoEnum;
 import com.mibanco.ts.crearclientecdtdgital.gen.type.TipoActividadCIIUEnum;
 import java.util.Date;
-
-import com.mibanco.ts.crearclientecdtdgital.services.command.IParam;
 import jakarta.validation.constraints.*;
 import jakarta.validation.Valid;
 
@@ -18,11 +16,13 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-
+/**
+ * object que implementa interface
+ **/
 
 @JsonTypeName("ClienteCDTDigitalType")
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2023-06-08T11:11:11.373566-05:00[America/Bogota]")
-public class ClienteCDTDigitalType implements IParam {
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2023-06-08T15:11:50.656023300-05:00[America/Bogota]")
+public class ClienteCDTDigitalType  implements com.mibanco.ts.crearclientecdtdgital.services.command.IParam {
   private @Valid String id;
   private @Valid String tipoTelefonoPrincipal;
   private @Valid Integer telefonoPrincipal;
