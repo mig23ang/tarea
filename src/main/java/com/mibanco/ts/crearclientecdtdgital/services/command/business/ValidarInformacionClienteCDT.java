@@ -12,6 +12,9 @@ import jakarta.ws.rs.core.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @ApplicationScoped
 public class ValidarInformacionClienteCDT implements ICommand {
 
@@ -24,19 +27,25 @@ public class ValidarInformacionClienteCDT implements ICommand {
     public Object execute(IParam parametro) {
         LOG.info("INICIA EXISTENCIA DE CLIENTECTDDIGITAL");
         try {
-            // Obtener el objeto ClienteCDTDigitalType del parámetro
-            ClienteCDTDigitalType clienteCDTDigitalType = (ClienteCDTDigitalType) parametro;
+            // Verificar si el parámetro es del tipo ClienteCDTDigitalType
+            if (parametro instanceof ClienteCDTDigitalType) {
+                ClienteCDTDigitalType clienteCDTDigitalType = (ClienteCDTDigitalType) parametro;
 
-            // Lógica para verificar la existencia del cliente
-            boolean clienteExiste = verificarExistenciaCliente(clienteCDTDigitalType);
+                // Lógica para verificar la existencia del cliente
+                boolean clienteExiste = verificarExistenciaCliente(clienteCDTDigitalType);
 
-            LOG.info("TERMINA EXISTENCIA DE CLIENTECTDDIGITAL");
-            return clienteExiste;
+                LOG.info("TERMINA EXISTENCIA DE CLIENTECTDDIGITAL");
+                return clienteExiste;
+            } else {
+                // Manejar el caso en que el parámetro no sea del tipo esperado
+                throw new IllegalArgumentException("El parámetro debe ser del tipo ClienteCDTDigitalType");
+            }
         } catch (ApplicationException e) {
             LOG.error(Constants.ERROR_SERVICIO + e.getMessage() + " validarInformacionClienteCDT");
             throw new ApplicationException(Response.Status.NOT_FOUND.getStatusCode(), Constants.ERROR_SERVICIO + e.getMessage() + " validarInformacionClienteCDT");
         }
     }
+
 
     private boolean verificarExistenciaCliente(ClienteCDTDigitalType clienteCDTDigitalType) {
         // Utiliza el método validarCliente del MockCliente para verificar la existencia del cliente

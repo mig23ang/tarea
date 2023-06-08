@@ -19,6 +19,7 @@ public class GenerarArchivoPlanoNovedades implements ICommand {
 
     @Override
     public Object execute(IParam parametro) {
+
         LOG.info("INICIA GENERAR ARCHIVO PLANO NOVEDADES DE CLIENTECTDDIGITAL");
         try {
             // Lógica para generar el archivo plano y obtener el objeto ArchivoType
@@ -32,6 +33,7 @@ public class GenerarArchivoPlanoNovedades implements ICommand {
         }
     }
 
+    //pendiente por saber de donde viene la info para recibirla por parametro
     private ArchivoType generarArchivoPlano() {
         // Implementa la lógica para generar el archivo plano y retorna un objeto ArchivoType
         ArchivoType archivoPlano = new ArchivoType();
