@@ -3,6 +3,7 @@ package com.mibanco.ts.crearclientecdtdgital.services.impl;
 
 import com.mibanco.ts.crearclientecdtdgital.constants.Constants;
 import com.mibanco.ts.crearclientecdtdgital.dto.ClienteDTO;
+import com.mibanco.ts.crearclientecdtdgital.dto.MockCliente;
 import com.mibanco.ts.crearclientecdtdgital.gen.type.ArchivoType;
 import com.mibanco.ts.crearclientecdtdgital.gen.type.ClienteCDTDigitalType;
 import com.mibanco.ts.crearclientecdtdgital.services.command.business.GenerarArchivoPlanoNovedadesCmd;

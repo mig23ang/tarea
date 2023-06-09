@@ -1,11 +1,9 @@
-package com.mibanco.ts.crearclientecdtdgital.services.impl;
+package com.mibanco.ts.crearclientecdtdgital.dto;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mibanco.ts.crearclientecdtdgital.gen.type.ClienteCDTDigitalType;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
-import jakarta.transaction.Transactional;
-import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

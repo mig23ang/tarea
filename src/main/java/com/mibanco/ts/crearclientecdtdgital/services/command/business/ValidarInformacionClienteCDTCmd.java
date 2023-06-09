@@ -4,7 +4,7 @@ import com.mibanco.ts.crearclientecdtdgital.gen.type.ClienteCDTDigitalType;
 import com.mibanco.ts.crearclientecdtdgital.services.command.ICommand;
 import com.mibanco.ts.crearclientecdtdgital.services.command.IParam;
 import com.mibanco.ts.crearclientecdtdgital.constants.Constants;
-import com.mibanco.ts.crearclientecdtdgital.services.impl.MockCliente;
+import com.mibanco.ts.crearclientecdtdgital.dto.MockCliente;
 import com.mibanco.ts.crearclientecdtdgital.utils.ApplicationException;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
