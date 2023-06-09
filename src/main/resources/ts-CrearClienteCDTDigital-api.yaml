@@ -86,8 +86,6 @@ components:
   schemas:
     ClienteCDTDigitalType:
       type: object
-      description: object que implementa interface
-      x-implements: [ 'com.mibanco.ts.crearclientecdtdgital.services.command.IParam' ]
       properties:
         id:
           type: string

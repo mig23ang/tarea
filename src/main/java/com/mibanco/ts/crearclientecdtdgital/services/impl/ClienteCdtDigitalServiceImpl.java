@@ -2,13 +2,14 @@ package com.mibanco.ts.crearclientecdtdgital.services.impl;
 
 
 import com.mibanco.ts.crearclientecdtdgital.constants.Constants;
+import com.mibanco.ts.crearclientecdtdgital.dto.ClienteDTO;
 import com.mibanco.ts.crearclientecdtdgital.gen.type.ArchivoType;
 import com.mibanco.ts.crearclientecdtdgital.gen.type.ClienteCDTDigitalType;
-import com.mibanco.ts.crearclientecdtdgital.services.command.IParam;
-import com.mibanco.ts.crearclientecdtdgital.services.command.business.GenerarArchivoPlanoNovedades;
-import com.mibanco.ts.crearclientecdtdgital.services.command.business.ValidarInformacionClienteCDT;
+import com.mibanco.ts.crearclientecdtdgital.services.command.business.GenerarArchivoPlanoNovedadesCmd;
+import com.mibanco.ts.crearclientecdtdgital.services.command.business.ValidarInformacionClienteCDTCmd;
 import com.mibanco.ts.crearclientecdtdgital.services.contract.IClienteCdtDigitalService;
 import com.mibanco.ts.crearclientecdtdgital.utils.ApplicationException;
+import com.mibanco.ts.crearclientecdtdgital.utils.ClienteCDTDigitalMapper;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
@@ -25,12 +26,15 @@ public class ClienteCdtDigitalServiceImpl implements IClienteCdtDigitalService {
     @Inject
     MockCliente mockCliente;
 
+    @Inject
+    ClienteCDTDigitalMapper clienteMapper;
+
     //comandos/////////////////////////////////////
     @Inject
-    ValidarInformacionClienteCDT validarInformacionClienteCDT;
+    ValidarInformacionClienteCDTCmd validarInformacionClienteCDT;
 
     @Inject
-    GenerarArchivoPlanoNovedades generarArchivoPlanoNovedades;
+    GenerarArchivoPlanoNovedadesCmd generarArchivoPlanoNovedades;
     //fin comandos ///////////////////////////////////////
 
 
@@ -38,15 +42,16 @@ public class ClienteCdtDigitalServiceImpl implements IClienteCdtDigitalService {
     @Override
     public ClienteCDTDigitalType crearClienteCDTDigital(ClienteCDTDigitalType clienteCDTDigitalType) {
         LOG.info("Inicia creación de datos crearClienteCDTDigitalSvcImpl");
+        ClienteDTO clienteDTO = clienteMapper.ClienteCDTDigitalTypeToClienteDTO(clienteCDTDigitalType);
         try {
             // 1. Validar la información del cliente
-            boolean clienteExiste = (boolean) validarInformacionClienteCDT.execute(clienteCDTDigitalType);
+            boolean clienteExiste = (boolean) validarInformacionClienteCDT.execute(clienteDTO);
 
             // Realiza la lógica necesaria según el resultado de la validación
             if (clienteExiste) {
                 LOG.info("Error creación de datos crearClienteCDTDigitalSvcImpl");
                 // 2. Generar el archivo plano de novedades **recordar que se envian los parametro necesarios para crear el archivo plano, los parametros aca enviados son un ejemplo
-                ArchivoType archivoPlano = (ArchivoType) generarArchivoPlanoNovedades.execute(clienteCDTDigitalType);
+                ArchivoType archivoPlano = (ArchivoType) generarArchivoPlanoNovedades.execute(clienteDTO);
                 throw new ApplicationException(Response.Status.EXPECTATION_FAILED.getStatusCode(), Constants.CLIENTE_YA_EXISTE);
             } else {
                 ModelMapper modelMapper = new ModelMapper();

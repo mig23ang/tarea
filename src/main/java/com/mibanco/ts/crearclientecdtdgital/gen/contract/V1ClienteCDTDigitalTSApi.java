@@ -15,7 +15,7 @@ import jakarta.validation.constraints.*;
 import jakarta.validation.Valid;
 
 @Path("/v1/ts/clienteCDT/")
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2023-06-08T15:11:50.656023300-05:00[America/Bogota]")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2023-06-09T15:34:00.287039800-05:00[America/Bogota]")
 public interface V1ClienteCDTDigitalTSApi {
 
     @POST

@@ -13,9 +13,9 @@ import org.slf4j.LoggerFactory;
 import java.util.ArrayList;
 
 @ApplicationScoped
-public class GenerarArchivoPlanoNovedades implements ICommand {
+public class GenerarArchivoPlanoNovedadesCmd implements ICommand {
 
-    private static final Logger LOG = LoggerFactory.getLogger(GenerarArchivoPlanoNovedades.class);
+    private static final Logger LOG = LoggerFactory.getLogger(GenerarArchivoPlanoNovedadesCmd.class);
 
     @Override
     public Object execute(IParam parametro) {

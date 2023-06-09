@@ -12,13 +12,10 @@ import jakarta.ws.rs.core.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.HashMap;
-import java.util.Map;
-
 @ApplicationScoped
-public class ValidarInformacionClienteCDT implements ICommand {
+public class ValidarInformacionClienteCDTCmd implements ICommand {
 
-    private static final Logger LOG = LoggerFactory.getLogger(ValidarInformacionClienteCDT.class);
+    private static final Logger LOG = LoggerFactory.getLogger(ValidarInformacionClienteCDTCmd.class);
 
     @Inject
     MockCliente mockCliente;
